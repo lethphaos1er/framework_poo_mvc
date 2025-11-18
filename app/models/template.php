@@ -3,7 +3,7 @@
 
 
 <head>
-    <?php include '../app/views/templates/partials/_head.php'; ?>
+    <?php include __DIR__ . '/../views/template/partials/_head.php'; ?>
 </head>
 
 

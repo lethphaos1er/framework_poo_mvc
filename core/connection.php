@@ -1,12 +1,18 @@
 <?php
 
+use PDO;
+use PDOException;
+
 try {
-    $conn = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PWD);
+    $conn = new PDO(
+        'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8',
+        DB_USER,
+        DB_PWD,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
 } catch (PDOException $e) {
-    echo $e->getMessage();
-    $conn = null; // Set to null on failure
+    die('Erreur de connexion MySQL : ' . $e->getMessage());
 }
-
-
-// alias pour compatibilité avec anciens contrôleurs
-$connexion = $conn;
