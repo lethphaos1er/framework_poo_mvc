@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\BooksModel;
+namespace App\Models;
 
 use \PDO;
-
-function findAll(PDO $conn, int $limit = 9): array
+abstract class BooksModel{
+public static function findAll(PDO $conn, int $limit = 9): array
 {
     $sql = "SELECT *
             FROM books
@@ -13,5 +13,6 @@ function findAll(PDO $conn, int $limit = 9): array
     $rs = $conn->prepare($sql);
     $rs->bindValue(':limit', $limit, PDO::PARAM_INT);
     $rs->execute();
-    return $rs->fetchAll(PDO::FETCH_ASSOC);
+    return $rs->fetchAll(PDO::FETCH_CLASS, 'App\Models\Book');
+}
 }

@@ -1,0 +1,17 @@
+{
+    "name": "nazdr/framework_poo_mvc",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\Controllers": "app/controllers",
+            "App\\Models": "App/models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Cedric Catoul",
+            "email": "catoul.cedric@protonmail.com"
+        }
+    ],
+    "require": {}
+}

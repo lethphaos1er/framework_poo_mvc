@@ -1,8 +1,11 @@
 <?php
 
-namespace Core\Helpers;
+namespace Core;
 
-function truncate(string $text, int $length = 100): string
+abstract class Helpers
+{
+    
+public static function truncate(string $text, int $length = 100): string
 {
     if (strlen($text) > $length) {
         $cut = substr($text, 0, $length);
@@ -13,7 +16,7 @@ function truncate(string $text, int $length = 100): string
     }
 }
 
-function slugify(string $text): string
+public static function slugify(string $text): string
 {
     // Strip html tags
     $text = strip_tags($text);
@@ -36,4 +39,6 @@ function slugify(string $text): string
     }
     // Return result
     return $text;
+}
+
 }

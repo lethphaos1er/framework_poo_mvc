@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Controllers\PagesController;
+namespace App\Controllers;
 
 use \PDO;
 
-function homeAction(PDO $conn)
+abstract class PagesController{
+    public static function homeAction(PDO $conn)
 {
     // inclure le modèle
-    include_once __DIR__ . '/../models/booksModel.php';
-
-    $books = \App\Models\BooksModel\findAll($conn, 3);
+   
+    $books = \App\Models\BooksModel::findAll($conn, 3);
 
     global $content, $title;
 
@@ -20,3 +20,4 @@ function homeAction(PDO $conn)
 
     $content = ob_get_clean();
 }
+};
