@@ -2,22 +2,18 @@
 
 namespace App\Controllers;
 
-use \PDO;
+use \App\Models\BooksRepository, \App\Models\AuthorsRepository;
 
-abstract class PagesController{
-    public static function homeAction(PDO $conn)
+abstract class PagesController
 {
-    // inclure le modèle
-   
-    $books = \App\Models\BooksModel::findAll($conn, 3);
+    public static function homeAction()
+    {
+        $books = BooksRepository::findAll(3);
+        $authors = AuthorsRepository::findAll(3);
 
-    global $content, $title;
-
-    ob_start();
-
-    // inclure la vue
-    include __DIR__ . '/../../views/pages/home.php';
-
-    $content = ob_get_clean();
+        global $content, $title;
+        ob_start();
+        include '../app/views/pages/home.php';
+        $content = ob_get_clean();
+    }
 }
-};
